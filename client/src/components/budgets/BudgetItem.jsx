@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import BudgetContext from '../../context/budget/budgetContext';
 
 const BudgetItem = ({ budget }) => {
+    const budgetContext = useContext(BudgetContext);
+    const { deleteBudget } = budgetContext;
+
     const { 
         id, income, 
         expenses: { rent, car, subscriptions, groceries, play},
         investments: { t401k, hsa, roth, robinhood }
     } = budget;
+
+    const onDelete = () => {
+        deleteBudget(id);
+    };
 
     return (
         <div className='card bg-light'>
@@ -28,7 +36,7 @@ const BudgetItem = ({ budget }) => {
             </ul>
             <p>
                 <button className="btn btn-dark btn-sm">Edit</button>
-                <button className="btn btn-danger btn-sm">Delete</button>
+                <button className="btn btn-danger btn-sm" onClick={onDelete}>Delete</button>
             </p>
         </div>
     )

@@ -16,8 +16,6 @@ const BudgetForm = () => {
         investments: { t401k, hsa, roth, robinhood }
     } = budget;
 
-    // const onChange = e => setBudget({ ...budget, [e.target.name]: e.target.value });
-
     const onChange = e => {
         const newBudget = {
             ...budget,

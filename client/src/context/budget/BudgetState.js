@@ -42,6 +42,9 @@ const BudgetState = props => {
     }
 
     // Delete Budget
+    const deleteBudget = id => {
+        dispatch({ type: DELETE_BUDGET, payload: id });
+    };
 
     // Set Current Budget
 
@@ -56,7 +59,8 @@ const BudgetState = props => {
     return (
         <BudgetContext.Provider
         value={{
-            budgets: state.budgets
+            budgets: state.budgets,
+            addBudget, deleteBudget
         }}>
             { props.children }
         </BudgetContext.Provider>

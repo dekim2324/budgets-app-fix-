@@ -11,7 +11,12 @@ export default (state, action) => {
             return {
                 ...state,
                 budgets: [...state.budgets, action.payload]
-            }
+            };
+        case DELETE_BUDGET:
+            return {
+                ...state,
+                budgets: state.budgets.filter(budget => budget.id !== action.payload)
+            };
         default: 
             return state;
     }

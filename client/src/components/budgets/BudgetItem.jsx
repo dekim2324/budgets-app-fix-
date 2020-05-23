@@ -4,7 +4,7 @@ import BudgetContext from '../../context/budget/budgetContext';
 
 const BudgetItem = ({ budget }) => {
     const budgetContext = useContext(BudgetContext);
-    const { deleteBudget } = budgetContext;
+    const { deleteBudget, setCurrent, clearCurrent } = budgetContext;
 
     const { 
         id, income, 
@@ -14,6 +14,7 @@ const BudgetItem = ({ budget }) => {
 
     const onDelete = () => {
         deleteBudget(id);
+        clearCurrent();
     };
 
     return (
@@ -35,7 +36,7 @@ const BudgetItem = ({ budget }) => {
                 {<li> robinhood: { robinhood }</li>}
             </ul>
             <p>
-                <button className="btn btn-dark btn-sm">Edit</button>
+                <button className="btn btn-dark btn-sm" onClick={() => setCurrent(budget)}>Edit</button>
                 <button className="btn btn-danger btn-sm" onClick={onDelete}>Delete</button>
             </p>
         </div>

@@ -30,7 +30,8 @@ const BudgetState = props => {
                 expenses: { rent: 1600, car: 400, subscriptions: 57, groceries: 240, play: 400 },
                 investments: { t401k: 1000, hsa: 100, roth: 500, robinhood: 1000 }
             }
-        ]
+        ],
+        current: null
     };
 
     const [state, dispatch] = useReducer(budgetReducer, initalState);
@@ -47,8 +48,14 @@ const BudgetState = props => {
     };
 
     // Set Current Budget
+    const setCurrent = budget => {
+        dispatch({ type: SET_CURRENT, payload: budget });
+    };
 
     // Clear Current Budget
+    const clearCurrent = () => {
+        dispatch({ type: CLEAR_CURRENT });
+    };
 
     // Update Budget
 
@@ -60,7 +67,9 @@ const BudgetState = props => {
         <BudgetContext.Provider
         value={{
             budgets: state.budgets,
-            addBudget, deleteBudget
+            current: state.current,
+            addBudget, deleteBudget,
+            setCurrent, clearCurrent
         }}>
             { props.children }
         </BudgetContext.Provider>

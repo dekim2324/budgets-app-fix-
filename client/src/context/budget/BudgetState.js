@@ -58,6 +58,9 @@ const BudgetState = props => {
     };
 
     // Update Budget
+    const updateBudget = budget => {
+        dispatch({ type: UPDATE_BUDGET, payload: budget });
+    };
 
     // Filter Budgets
 
@@ -69,7 +72,8 @@ const BudgetState = props => {
             budgets: state.budgets,
             current: state.current,
             addBudget, deleteBudget,
-            setCurrent, clearCurrent
+            setCurrent, clearCurrent,
+            updateBudget
         }}>
             { props.children }
         </BudgetContext.Provider>

@@ -1,8 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import BudgetContext from '../../context/budget/budgetContext';
 
 const BudgetForm = () => {
     const budgetContext = useContext(BudgetContext);
+    const { addBudget, current, clearCurrent, updateBudget } = budgetContext;
+
+    useEffect(() => {
+        if(current !== null) {
+            setBudget(current);
+        } else {
+            setBudget({
+                income: '',
+                expenses: { rent: '', car: '', subscriptions: '', groceries: '', play: '' },
+                investments: { t401k: '', hsa: '', roth: '', robinhood: '' }
+            });
+        }
+    }, [current]);
 
     const [budget, setBudget] = useState({
         income: '',
@@ -38,17 +51,21 @@ const BudgetForm = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        budgetContext.addBudget(budget);
-        setBudget({
-            income: '',
-            expenses: { rent: '', car: '', subscriptions: '', groceries: '', play: '' },
-            investments: { t401k: '', hsa: '', roth: '', robinhood: '' }
-        });
-    }
+        if(current === null) {
+            addBudget(budget);
+        } else {
+            updateBudget(budget);
+        }
+        clearAll();
+    };
+
+    const clearAll = () => {
+        clearCurrent();
+    };
 
     return (
         <form onSubmit={onSubmit}>
-            <h2 className="text-primary">Add Budget</h2>
+            <h2 className="text-primary">{current ? 'Edit Budget' : 'Add Budget'}</h2>            
             <input type="text" placeholder="income" name="income" value={income} onChange={onChange}/>
             <input type="text" placeholder="rent" name="rent" value={rent} onChange={onChange}/>
             <input type="text" placeholder="car" name="car" value={car} onChange={onChange}/>
@@ -60,8 +77,11 @@ const BudgetForm = () => {
             <input type="text" placeholder="roth" name="roth" value={roth} onChange={onChange}/>
             <input type="text" placeholder="robinhood" name="robinhood" value={robinhood} onChange={onChange}/>
             <div>
-                <input type="submit" value="Add Budget" className="btn btn-primary"/>
+                <input type="submit" value={current ? 'Update Budget' : 'Add Budget'} className="btn btn-primary btn-block"/>
             </div>
+            {current && <div>
+                <button className="btn btn-light btn-block" onClick={clearAll}>Clear</button>    
+            </div>}
         </form>
     )
 }

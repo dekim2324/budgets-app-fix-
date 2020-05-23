@@ -12,6 +12,12 @@ export default (state, action) => {
                 ...state,
                 budgets: [...state.budgets, action.payload]
             };
+        case UPDATE_BUDGET:
+            return {
+                ...state,
+                budgets: state.budgets.map(budget => budget.id === action.payload.id ? 
+                    action.payload : budget)
+            };
         case DELETE_BUDGET:
             return {
                 ...state,

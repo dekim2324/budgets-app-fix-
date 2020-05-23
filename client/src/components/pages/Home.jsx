@@ -1,11 +1,12 @@
 import React from 'react';
 import Budgets from '../budgets/Budgets';
+import BudgetForm from '../budgets/BudgetForm';
 
 const Home = () => {
     return (
         <div className="grid-2">
             <div>
-                {/* BudgetForm */}
+                <BudgetForm />
             </div>
             <div>
                 <Budgets />

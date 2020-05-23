@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
 import BudgetContext from './budgetContext';
 import budgetReducer from './budgetReducer';
 import {
@@ -8,6 +7,7 @@ import {
     UPDATE_BUDGET, 
     FILTER_BUDGET, CLEAR_FILTER
 } from '../types';
+const uuid = require('uuid'); 
 
 const BudgetState = props => {
     const initalState = {
@@ -36,6 +36,10 @@ const BudgetState = props => {
     const [state, dispatch] = useReducer(budgetReducer, initalState);
 
     // Add Budget
+    const addBudget = (budget) => {
+        budget.id = uuid.v4();
+        dispatch({ type: ADD_BUDGET, payload: budget });
+    }
 
     // Delete Budget
 

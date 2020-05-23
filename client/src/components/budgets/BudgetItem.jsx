@@ -14,17 +14,17 @@ const BudgetItem = ({ budget }) => {
                Income: { income }
             </h3>
             <ul className="list"> <strong>Expenses:</strong>
-                {<li> rent: {rent}</li>}
-                {<li> car: {car}</li>}
-                {<li> subscriptions: {subscriptions}</li>}
-                {<li> groceries: {groceries}</li>}
-                {<li> play: {play}</li>}
+                {<li> rent: { rent }</li>}
+                {<li> car: { car }</li>}
+                {<li> subscriptions: { subscriptions }</li>}
+                {<li> groceries: { groceries }</li>}
+                {<li> play: { play }</li>}
             </ul>
             <ul className="list"> <strong>Investments:</strong>
-                {<li> 401k: {t401k}</li>}
-                {<li> hsa: {hsa}</li>}
-                {<li> roth: {roth}</li>}
-                {<li> robinhood: {robinhood}</li>}
+                {<li> 401k: { t401k }</li>}
+                {<li> hsa: { hsa }</li>}
+                {<li> roth: { roth }</li>}
+                {<li> robinhood: { robinhood }</li>}
             </ul>
             <p>
                 <button className="btn btn-dark btn-sm">Edit</button>

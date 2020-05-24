@@ -31,7 +31,8 @@ const BudgetState = props => {
                 investments: { t401k: 1000, hsa: 100, roth: 500, robinhood: 1000 }
             }
         ],
-        current: null
+        current: null,
+        filtered: null
     };
 
     const [state, dispatch] = useReducer(budgetReducer, initalState);
@@ -63,17 +64,25 @@ const BudgetState = props => {
     };
 
     // Filter Budgets
+    const filterBudgets = text => {
+        dispatch({ type: FILTER_BUDGET, payload: text });
+    };
 
     // Clear Filter
+    const clearFilter = () => {
+        dispatch({ type: CLEAR_FILTER });
+    };
 
     return (
         <BudgetContext.Provider
         value={{
             budgets: state.budgets,
             current: state.current,
+            filtered: state.filtered,
             addBudget, deleteBudget,
             setCurrent, clearCurrent,
-            updateBudget
+            updateBudget,
+            filterBudgets, clearFilter
         }}>
             { props.children }
         </BudgetContext.Provider>

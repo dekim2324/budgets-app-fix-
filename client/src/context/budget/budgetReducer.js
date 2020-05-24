@@ -33,6 +33,19 @@ export default (state, action) => {
                 ...state,
                 current: null
             };
+        case FILTER_BUDGET:
+            return {
+                ...state,
+                filtered: state.budgets.filter(budget => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return budget.income.toString().match(regex);
+                })
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filtered: null
+            };
         default: 
             return state;
     }

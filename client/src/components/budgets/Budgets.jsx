@@ -2,10 +2,15 @@ import React, { Fragment, useContext } from 'react';
 import BudgetItem from './BudgetItem';
 import BudgetContext from '../../context/budget/budgetContext';
 
+
 const Budgets = () => {
     const budgetContext = useContext(BudgetContext);
 
-    const { budgets } = budgetContext;
+    const { budgets, filtered } = budgetContext;
+
+    if(budgets.length === 0) {
+        return <h2>Please add a budget</h2>
+    }
 
     return (
         <Fragment>

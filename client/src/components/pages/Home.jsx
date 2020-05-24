@@ -1,6 +1,7 @@
 import React from 'react';
 import Budgets from '../budgets/Budgets';
 import BudgetForm from '../budgets/BudgetForm';
+import BudgetFilter from '../budgets/BudgetFilter';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
                 <BudgetForm />
             </div>
             <div>
+                <BudgetFilter />
                 <Budgets />
             </div>
         </div>

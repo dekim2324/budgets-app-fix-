@@ -14,9 +14,13 @@ const Budgets = () => {
 
     return (
         <Fragment>
-            {budgets.map(budget => (
+            {filtered !== null 
+                ? filtered.map(budget => (
+                <BudgetItem  key={ budget.id } budget={ budget }/>
+                ))
+                :  budgets.map(budget => (
                 <BudgetItem key={ budget.id } budget={ budget }/>
-            ))}
+                ))}
         </Fragment>
     )
 };
